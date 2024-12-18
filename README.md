@@ -8,7 +8,7 @@ _You can check our bot [here](https://t.me/shabatRobot)._
 # Installation
 
 ```bash
-git clone https://github.com/theisraelis/Shabbat
+git clone https://github.com/theisraelis/Shabbat.git
 ```
 ##
 This project was created by [@israelik](https://t.me/israelik).
