@@ -13,3 +13,4 @@ git clone https://github.com/theisraelis/Shabbat
 ```
 ##
 This project was created by [@israelik](https//t.me/israelik).
+[here](https//t.me/ShabatRobot)
