@@ -13,3 +13,5 @@ git clone https://github.com/theisraelis/Shabbat
 ```
 ##
 This project was created by [@israelik](https//t.me/israelik).
+##
+Don't forget to install the [required dependencies](https://docs.madelineproto.xyz/docs/REQUIREMENTS.html) for MadelineProto.
