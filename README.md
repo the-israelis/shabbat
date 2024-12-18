@@ -4,7 +4,7 @@
 ##
 A robot for changing the Telegram group's permissions at the entrance and exit of Shabbat.
 
-_You can check our bot here:_ [here](https//t.me/ShabatRobot)
+_You can check our bot here:_ [here](https//t.me/ShabatRobot) [here](https:/t.me/ShabatRobot)
 ##
 **Installation**
 ##
