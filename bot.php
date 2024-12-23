@@ -1,11 +1,5 @@
 <?php declare(strict_types=1);
 
-/*
-
-This project was created by @israelik for @the_israelis
-
-*/
-
 use danog\MadelineProto\Broadcast\Filter;
 use danog\MadelineProto\API;
 use danog\MadelineProto\Broadcast\Progress;
@@ -20,6 +14,7 @@ use danog\MadelineProto\EventHandler\Message\PrivateMessage;
 use danog\MadelineProto\EventHandler\Message\GroupMessage;
 use danog\MadelineProto\EventHandler\SimpleFilter\FromAdmin;
 use danog\MadelineProto\EventHandler\SimpleFilter\Incoming;
+use danog\MadelineProto\LocalFile;
 use danog\MadelineProto\Logger;
 use danog\MadelineProto\ParseMode;
 use danog\MadelineProto\Settings;
@@ -48,11 +43,6 @@ if (class_exists(API::class)) {
 class MyEventHandler extends SimpleEventHandler
 {
 
-/**
-* Username or ID of bot admin
-*/
-public const ADMIN = "@israelik"; // Change this
-
     public const CLOSER = "הקבוצה שלנו שומרת שבת ותהיה סגורה עד צאת השבת 🕯
 🇮🇱 שבת שלום לכולם 🇮🇱"; 
 
@@ -68,7 +58,8 @@ public const ADMIN = "@israelik"; // Change this
 
     public function getReportPeers()
     {
-        return [self::ADMIN];
+$ADMIN = parse_ini_file('.env')['ADMIN'];
+        return $ADMIN;
     }
 
  #[FilterIncoming]
@@ -2628,6 +2619,7 @@ Amp\File\write("systemdateout.txt",$dateshabatout);
 
 }
 
+
 //////////////////////// ADMIN COMMANDS
 
 #[FilterCommandCaseInsensitive('admin')]
@@ -3562,6 +3554,9 @@ $this->messages->editMessage(peer: $filexmsgid1, id: $filexmsgid2, message: "✅
 
 }
 
+$API_ID = parse_ini_file('.env')['API_ID'];
+$API_HASH = parse_ini_file('.env')['API_HASH'];
+$BOT_TOKEN = parse_ini_file('.env')['BOT_TOKEN'];
 $settings = new Settings;
-$settings->getLogger()->setLevel(Logger::LEVEL_ULTRA_VERBOSE);
-MyEventHandler::startAndLoop('bot.madeline', $settings);
+$settings->setAppInfo((new \danog\MadelineProto\Settings\AppInfo)->setApiId((int)$API_ID)->setApiHash($API_HASH));
+MyEventHandler::startAndLoopBot('bot.madeline', $BOT_TOKEN, $settings);
