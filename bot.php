@@ -9,7 +9,7 @@
  * @license   https://opensource.org/license/mit MIT License
  * @link israelik => https://t.me/israelik | israelisBots => https://t.me/israelisBots
  */
- 
+  
 use danog\MadelineProto\Broadcast\Filter;
 use danog\MadelineProto\Broadcast\Progress;
 use danog\MadelineProto\Broadcast\Status;
