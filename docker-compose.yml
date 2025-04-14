@@ -1,0 +1,12 @@
+services:
+  shabat-bot:
+    build:
+      context: .
+    environment:
+      - TZ=Asia/Jerusalem
+    platform: linux/amd64
+    dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./app:/app 
+    command: php /app/bot.php
