@@ -1,0 +1,22 @@
+{
+    "name": "theisraelis/shabbat",
+    "description": "A robot for changing the Telegram group's permissions at the entrance and exit of Shabbat.",
+    "require": {
+        "danog/madelineproto": "^8"
+    },
+    "license": "MIT License",
+    "authors": [
+        {
+            "name": "the israelis",
+            "telegram": "@the_israelis"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "theisraelis\\shabbat\\": ""
+        },
+	    "files": [
+            "bot.php"
+        ]
+    }
+}
