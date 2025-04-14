@@ -1,0 +1,11 @@
+*.madeline.*
+*.madeline
+*.session*
+.git/
+vendor/
+*.log
+*.env
+*.tmp
+.idea/
+*.iml
+*.txt
