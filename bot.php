@@ -88,7 +88,9 @@ $txtbot = "היי <a href='mention:$senderid'>$first_name</a>, ברוך הבא �
 הרובוט שישמור את השבת בקבוצה שלך!
 
 🕯 <u>הרובוט בקוד פתוח בגיטהאב:</u>
-github.com/theisraelis/shabbat";
+github.com/theisraelis/shabbat
+
+📣 <b>ערוץ העדכונים:</b> @shabbatNews";
 
 $bot_API_markup[] = [['text'=>"זמני כניסת השבת 🕯",'callback_data'=>"זמנישבת"]];
 $bot_API_markup[] = [['text'=>"הוסף אותי לקבוצה ➕",'url'=>"https://t.me/$me_username?startgroup&admin=restrict_members"]];
@@ -129,7 +131,9 @@ $txtbot = "היי <a href='mention:$userid'>$first_name</a>, ברוך הבא �
 הרובוט שישמור את השבת בקבוצה שלך!
 
 🕯 <u>הרובוט בקוד פתוח בגיטהאב:</u>
-github.com/theisraelis/shabbat";
+github.com/theisraelis/shabbat
+
+📣 <b>ערוץ העדכונים:</b> @shabbatNews";
 
 $bot_API_markup[] = [['text'=>"זמני כניסת השבת 🕯",'callback_data'=>"זמנישבת"]];
 $bot_API_markup[] = [['text'=>"הוסף אותי לקבוצה ➕",'url'=>"https://t.me/$me_username?startgroup&admin=restrict_members"]];
@@ -686,8 +690,18 @@ $zmanim = "⌚️ <u><b>זמני כניסת ויציאת השבת:</b></u>
 
 $me = $this->getSelf();
 $me_username = $me['username'];
-$bot_API_markup[] = [['text'=>"שתף את הרובוט 🤳",'url'=>"http://t.me/share/url?url=https://t.me/$me_username"]];
-$bot_API_markup = [ 'inline_keyboard'=> $bot_API_markup,];
+
+$inlineQueryPeerTypePM = ['_' => 'inlineQueryPeerTypePM'];
+$inlineQueryPeerTypeChat = ['_' => 'inlineQueryPeerTypeChat'];
+$inlineQueryPeerTypeBotPM = ['_' => 'inlineQueryPeerTypeBotPM'];
+$inlineQueryPeerTypeMegagroup = ['_' => 'inlineQueryPeerTypeMegagroup'];
+$inlineQueryPeerTypeBroadcast = ['_' => 'inlineQueryPeerTypeBroadcast'];
+
+$keyboardButtonSwitchInline = ['_' => 'keyboardButtonSwitchInline', 'same_peer' => false, 'text' => 'לשיתוף זמני השבת 🕯', 'query' => 'shabat', 'peer_types' => [$inlineQueryPeerTypePM, $inlineQueryPeerTypeChat, $inlineQueryPeerTypeBotPM, $inlineQueryPeerTypeMegagroup, $inlineQueryPeerTypeBroadcast]];
+$keyboardButtonUrl = ['_' => 'keyboardButtonUrl', 'text' => '📣 לערוץ העדכונים 📣', 'url' => 'https://t.me/shabbatnews'];
+$keyboardButtonRow1 = ['_' => 'keyboardButtonRow', 'buttons' => [$keyboardButtonSwitchInline]];
+$keyboardButtonRow2 = ['_' => 'keyboardButtonRow', 'buttons' => [$keyboardButtonUrl]];
+$bot_API_markup = ['_' => 'replyInlineMarkup', 'rows' => [$keyboardButtonRow1, $keyboardButtonRow2]];
 
 $this->messages->editMessage(peer: $message->chatId, id: $sentMessage2, message: "$zmanim", reply_markup: $bot_API_markup, parse_mode: 'HTML');
 
@@ -909,11 +923,24 @@ $zmanim = "⌚️ <u><b>זמני כניסת ויציאת השבת:</b></u>
 
 $me = $this->getSelf();
 $me_username = $me['username'];
-$bot_API_markup[] = [['text'=>"שתף את הרובוט 🤳",'url'=>"http://t.me/share/url?url=https://t.me/$me_username"]];
-$bot_API_markup = [ 'inline_keyboard'=> $bot_API_markup,];
+
+$inlineQueryPeerTypePM = ['_' => 'inlineQueryPeerTypePM'];
+$inlineQueryPeerTypeChat = ['_' => 'inlineQueryPeerTypeChat'];
+$inlineQueryPeerTypeBotPM = ['_' => 'inlineQueryPeerTypeBotPM'];
+$inlineQueryPeerTypeMegagroup = ['_' => 'inlineQueryPeerTypeMegagroup'];
+$inlineQueryPeerTypeBroadcast = ['_' => 'inlineQueryPeerTypeBroadcast'];
+
+$keyboardButtonSwitchInline = ['_' => 'keyboardButtonSwitchInline', 'same_peer' => false, 'text' => 'לשיתוף זמני השבת 🕯', 'query' => 'shabat', 'peer_types' => [$inlineQueryPeerTypePM, $inlineQueryPeerTypeChat, $inlineQueryPeerTypeBotPM, $inlineQueryPeerTypeMegagroup, $inlineQueryPeerTypeBroadcast]];
+$keyboardButtonUrl = ['_' => 'keyboardButtonUrl', 'text' => '📣 לערוץ העדכונים 📣', 'url' => 'https://t.me/shabbatnews'];
+$keyboardButtonRow1 = ['_' => 'keyboardButtonRow', 'buttons' => [$keyboardButtonSwitchInline]];
+$keyboardButtonRow2 = ['_' => 'keyboardButtonRow', 'buttons' => [$keyboardButtonUrl]];
+$bot_API_markup = ['_' => 'replyInlineMarkup', 'rows' => [$keyboardButtonRow1, $keyboardButtonRow2]];
+
+$documentAttributeImageSize = ['_' => 'documentAttributeImageSize', 'w' => 475, 'h' => 475];
+$inputWebDocument = ['_' => 'inputWebDocument', 'url' => 'https://telegra.ph/file/0b06390cc0e5236a5bd05-0fc4534fa4021ecb33.jpg', 'size' => 98166, 'mime_type' => 'image/jpeg', 'attributes' => [$documentAttributeImageSize]];
 
 $botInlineMessageText = ['_' => 'inputBotInlineMessageText', 'message' => "$zmanim", 'parse_mode'=> 'HTML', 'reply_markup' => $bot_API_markup];
-$inputBotInlineResult = ['_' => 'botInlineResult', 'id' => '0', 'type' => 'article', 'title' => 'זמני כניסת השבת', 'description' => 'לחץ כאן לשיתוף זמני השבת!', 'send_message' => $botInlineMessageText];
+$inputBotInlineResult = ['_' => 'botInlineResult', 'id' => '0', 'type' => 'article', 'title' => 'זמני כניסת השבת', 'description' => 'לחץ כאן לשיתוף זמני השבת!', 'thumb' => $inputWebDocument,'send_message' => $botInlineMessageText];
 		  
         $this->logger("Got query ".$update['query']);
         try {
@@ -2146,23 +2173,33 @@ $numFruits = count($dialogs);
 $peerList31 = [];
 foreach($dialogs as $peer)
 {
+try {
 $info = $this->getInfo($peer);
 if(!isset($info['type']) || $info['type'] != "supergroup"){
 continue;
 }
 $peerList31[]=$peer;
-$numFruits31 = count($peerList31);
+} catch (Throwable $e) {
+continue;
 }
+}
+$numFruits31 = count($peerList31);
+
 $peerList312 = [];
 foreach($dialogs as $peer)
 {
+	try {
 $info = $this->getInfo($peer);
 if(!isset($info['type']) || $info['type'] != "chat"){
 continue;
 }
 $peerList312[]=$peer;
-$numFruits312 = count($peerList312);
+} catch (Throwable $e) {
+continue;
 }
+}
+$numFruits312 = count($peerList312);
+
 if (!isset($numFruits312)) {
 $numFruits312 = 0;
 } else {
@@ -2638,14 +2675,18 @@ $me_username = $me['username'];
 foreach ($userstoasend1 as $peer) {
 try {
 if (file_exists(__DIR__."/"."data/$peer/alertshabat.txt")) {
-$bot_API_markup = ['inline_keyboard' => 
-    [
-        [
-['text'=>"שתף את הרובוט 🤳",'url'=>"http://t.me/share/url?url=https://t.me/$me_username"]		
-			
-        ]
-    ]
-];
+
+$inlineQueryPeerTypePM = ['_' => 'inlineQueryPeerTypePM'];
+$inlineQueryPeerTypeChat = ['_' => 'inlineQueryPeerTypeChat'];
+$inlineQueryPeerTypeBotPM = ['_' => 'inlineQueryPeerTypeBotPM'];
+$inlineQueryPeerTypeMegagroup = ['_' => 'inlineQueryPeerTypeMegagroup'];
+$inlineQueryPeerTypeBroadcast = ['_' => 'inlineQueryPeerTypeBroadcast'];
+
+$keyboardButtonSwitchInline = ['_' => 'keyboardButtonSwitchInline', 'same_peer' => false, 'text' => 'לשיתוף זמני השבת 🕯', 'query' => 'shabat', 'peer_types' => [$inlineQueryPeerTypePM, $inlineQueryPeerTypeChat, $inlineQueryPeerTypeBotPM, $inlineQueryPeerTypeMegagroup, $inlineQueryPeerTypeBroadcast]];
+$keyboardButtonUrl = ['_' => 'keyboardButtonUrl', 'text' => '📣 לערוץ העדכונים 📣', 'url' => 'https://t.me/shabbatnews'];
+$keyboardButtonRow1 = ['_' => 'keyboardButtonRow', 'buttons' => [$keyboardButtonSwitchInline]];
+$keyboardButtonRow2 = ['_' => 'keyboardButtonRow', 'buttons' => [$keyboardButtonUrl]];
+$bot_API_markup = ['_' => 'replyInlineMarkup', 'rows' => [$keyboardButtonRow1, $keyboardButtonRow2]];
 
 $sendmoadaa1 = $this->messages->sendMessage(peer: $peer, message: $zmanim, reply_markup: $bot_API_markup, parse_mode: 'html');
 $this->sleep(0.1);
@@ -3902,6 +3943,7 @@ if($first_name == null){
 $first_name = "null";
 }
 
+$bot_API_markup[] = [['text'=>"נתוני הודעה אחרונה 📊",'callback_data'=>"LastBrodDATA"]];
 $bot_API_markup[] = [['text'=>"מחק הודעה אחרונה 🗑",'callback_data'=>"בקרוב"]];
 $bot_API_markup[] = [['text'=>"שלח הודעה למנויים 📮",'callback_data'=>"שידורלמשתמשים2"]];
 $bot_API_markup[] = [['text'=>"חזרה",'callback_data'=>"חזרהמנהל2"]];
@@ -3928,6 +3970,19 @@ $query->editText($message = "<b>נא שלח את ההודעה שתרצה לשל�
 Amp\File\write(__DIR__."/data/$userid/grs1.txt", 'broadcast1');
 $msgqutryid = $query->messageId;
 Amp\File\write(__DIR__."/data/$userid/messagetodelete.txt", "$msgqutryid");
+}
+
+#[FilterButtonQueryData('LastBrodDATA')]
+public function LastBrodDATA(callbackQuery $query)
+{  
+try{
+    if (file_exists(getcwd()."/LastBrodDATA")) {
+$filex = Amp\File\read(getcwd()."/LastBrodDATA"); 
+	}else{
+$filex = "📊 אין עדיין נתונים."; 	
+	}
+$query->answer($message = $filex, $alert = true, $url = null, $cacheTime = 0);
+} catch (Throwable $e) {}
 }
 
     #[Handler]
@@ -5273,6 +5328,7 @@ $this->messages->editMessage(peer: $filexmsgid1, id: $filexmsgid2, message: "�
 ✅ ההודעה נשלחה ל: $sucessCount
 ⏳ ממתינים לשליחה: $pendingCount
 ❌ נכשל בעת השליחה: $sucessCount2", reply_markup: $bot_API_markup);
+
 }catch (\danog\MadelineProto\Exception $e) {
 $estring = (string) $e;
 if(preg_match("/MESSAGE_NOT_MODIFIED/",$estring)){
@@ -5285,7 +5341,10 @@ if(preg_match("/MESSAGE_NOT_MODIFIED/",$estring)){
 }
 }
 
-
+Amp\File\write(getcwd()."/LastBrodDATA", "פילטר מנויים: $broadcast_send
+✅ ההודעה נשלחה ל: $sucessCount
+⏳ ממתינים לשליחה: $pendingCount
+❌ נכשל בעת השליחה: $sucessCount2");
 
     if (file_exists(__DIR__."/data/BUTTONS.txt")) {
 unlink(__DIR__."/data/BUTTONS.txt");  
@@ -5401,3 +5460,4 @@ echo "\n".$error."\n";
  }
 }
 }
+
